@@ -35,8 +35,8 @@ export default function App() {
   }
 
   const data3: Person2 = {
-    name: "Dion",
-    occupation: "Student and Line Cook",
+    name: "John Doe",
+    occupation: "Software Dev",
     vacationDestination: vacationDestination('Dubai'),
     vacationPricing: vacationPricing(1000)
   }
