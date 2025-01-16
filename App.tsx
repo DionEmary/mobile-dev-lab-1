@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import vacationDestination , { vacationPricing } from './app/vacation';
 
 export default function App() {
@@ -62,7 +62,7 @@ export default function App() {
       </View>
       <View>
         <TouchableOpacity onPress={() => {alert("Vacation Ready")}}>
-          <Text>Click Me</Text>
+          <Text style={styles.Button}>Click Me</Text>
         </TouchableOpacity>
       </View>
       <StatusBar style="auto" />
@@ -78,7 +78,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   Title: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold'
-  }
+  },
+  Button: {
+    color: 'blue',
+    borderBlockColor: 'blue',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderRadius: 10,
+    fontSize: 30,
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#E3E3E3',
+  },
 });
