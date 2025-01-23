@@ -1,0 +1,1 @@
+export const list: string[] = ["orange", "mango", "apple"]
