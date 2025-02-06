@@ -1,6 +1,7 @@
 import { Button, StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
 import React from 'react';
 import { list } from '../components/fruits';
+import { Link } from 'expo-router';
 
 export default function Home() {
     return (
@@ -12,6 +13,9 @@ export default function Home() {
                     <Text style={styles.items}>{item}</Text>
                 )}
             />
+            <Link href="/lab_3">
+                Lab 3
+            </Link>
         </View>
     );
 
