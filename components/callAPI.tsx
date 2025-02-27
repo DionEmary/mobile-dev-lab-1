@@ -23,33 +23,35 @@ const CallAPI = () => {
             setError(error as Error);
         } finally {
             setLoading(false);
-        };
+        }
     };
 
     return (
         <View style={styles.container}>
+            {loading && <Text>Loading...</Text>}
+            {error && <Text>Error: {error.message}</Text>}
             {data && (
                 <View>
                     <Text style={styles.title}>{data.title}</Text>
                     <Text style={styles.body}>{data.body}</Text>
                 </View>
             )}
-        </View>
-    );
-};
-
-const styles = StyleSheet.create({
-    container: {
-        padding: 10,
-        margin: 10,
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    body: {
-        fontSize: 16,
-    },
-});
-
+            </View>
+        );
+    };
+    
+    const styles = StyleSheet.create({
+        container: {
+            padding: 10,
+            margin: 10,
+        },
+        title: {
+            fontSize: 20,
+            fontWeight: 'bold',
+        },
+        body: {
+            fontSize: 16,
+        },
+    });
+    
 export default CallAPI;
