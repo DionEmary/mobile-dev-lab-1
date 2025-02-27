@@ -19,6 +19,9 @@ export default function Home() {
             <Link href="/lab4">
                 Lab 4
             </Link>
+            <Link href="/lab5">
+                Lab 5
+            </Link>
         </View>
     );
 
