@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-export default function CallAPI()
-{
+export default function CallAPI() {
     const [data, setData] = useState({ title: '', body: '' });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -21,16 +20,48 @@ export default function CallAPI()
         fetchData();
     }, []);
 
-    if (loading) return <View><Text>Loading...</Text></View>;
-    if (error) return <View>Error!</View>;
+    if (loading) return <View style={styles.container}><Text style={styles.text}>Loading...</Text></View>;
+    if (error) return <View style={styles.container}><Text style={styles.text}>Error!</Text></View>;
     return (
-        <View>
+        <View style={styles.container}>
             {data && (
-                <View>
-                    <Text>{data.title}</Text>
-                    <Text>{data.body}</Text>
+                <View style={styles.data}>
+                    <Text style={styles.title}>{data.title}</Text>
+                    <Text style={styles.body}>{data.body}</Text>
                 </View>
             )}
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        marginTop: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    text: {
+        fontSize: 18,
+        color: '#ffffff',
+    },
+    data: {
+        padding: 20,
+        backgroundColor: '#1e1e1e',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 3,
+        width: '80%',
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#ffffff',
+        marginBottom: 10,
+    },
+    body: {
+        fontSize: 16,
+        color: '#b0b0b0',
+    },
+});
