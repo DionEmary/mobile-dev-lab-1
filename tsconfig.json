@@ -3,6 +3,6 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react",
-    "allowJs": true // Add this line to allow JavaScript files
+    "allowJs": true
   }
 }
