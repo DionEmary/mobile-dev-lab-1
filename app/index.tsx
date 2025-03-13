@@ -13,18 +13,20 @@ export default function Home() {
                     <Text style={styles.items}>{item}</Text>
                 )}
             />
-            <Link href="/lab_3">
-                Lab 3
-            </Link>
-            <Link href="/lab4">
-                Lab 4
-            </Link>
-            <Link href="/lab5">
-                Lab 5
-            </Link>
-            <Link href="/lab6">
-                Lab 6
-            </Link>
+            <View style={styles.labLinks}>
+                <Link href="/lab_3">
+                    Lab 3
+                </Link>
+                <Link href="/lab4">
+                    Lab 4
+                </Link>
+                <Link href="/lab5">
+                    Lab 5
+                </Link>
+                <Link href="/lab6">
+                    Lab 6
+                </Link>
+            </View>
         </View>
     );
 
@@ -44,5 +46,11 @@ export default function Home() {
         },
         items: {
             fontSize: 20,
-        }
+        },
+        labLinks: {
+            marginBottom: 70,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            width: '50%',
+        },
     })
