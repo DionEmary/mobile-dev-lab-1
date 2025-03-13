@@ -1,67 +1,57 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-export default function CallAPI() {
-    const [data, setData] = useState({ title: '', body: '' });
+const CallAPI = () => {
+    const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
-                const data = await response.json();
-                setData(data);
-            } catch (error) {
-                setError(error as any);
-            }
-            setLoading(false);
-        };
-        fetchData();
+        APICall();
     }, []);
 
-    if (loading) return <View style={styles.container}><Text style={styles.text}>Loading...</Text></View>;
-    if (error) return <View style={styles.container}><Text style={styles.text}>Error!</Text></View>;
+    const APICall = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(
+                'https://jsonplaceholder.typicode.com/posts/1'
+            );
+            const data = await response.json();
+            setData(data);
+            console.log(data);
+        } catch (error) {
+            setError(error as Error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <View style={styles.container}>
+            {loading && <Text>Loading...</Text>}
+            {error && <Text>Error: {error.message}</Text>}
             {data && (
-                <View style={styles.data}>
+                <View>
                     <Text style={styles.title}>{data.title}</Text>
                     <Text style={styles.body}>{data.body}</Text>
                 </View>
             )}
-        </View>
-    );
-}
-
-const styles = StyleSheet.create({
-    container: {
-        marginTop: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text: {
-        fontSize: 18,
-        color: '#ffffff',
-    },
-    data: {
-        padding: 20,
-        backgroundColor: '#1e1e1e',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 3,
-        width: '80%',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#ffffff',
-        marginBottom: 10,
-    },
-    body: {
-        fontSize: 16,
-        color: '#b0b0b0',
-    },
-});
+            </View>
+        );
+    };
+    
+    const styles = StyleSheet.create({
+        container: {
+            padding: 10,
+            margin: 10,
+        },
+        title: {
+            fontSize: 20,
+            fontWeight: 'bold',
+        },
+        body: {
+            fontSize: 16,
+        },
+    });
+    
+export default CallAPI;
